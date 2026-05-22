@@ -16,8 +16,8 @@ public abstract class Vehicle {
     private int prov_id;
     private String marca;
     private String modelo;
-    private String color;
     private int year;
+    private String color;
     private int costo;
     private String placa;
     private String estado;
@@ -26,19 +26,21 @@ public abstract class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(int vehi_id, int tipo_id, int prov_id, String marca, String modelo, String color, int year, int costo, String placa, String estado, String fecha_ingreso) {
+    public Vehicle(int vehi_id, int tipo_id, int prov_id, String marca, String modelo, int year, String color, int costo, String placa, String estado, String fecha_ingreso) {
         this.vehi_id = vehi_id;
         this.tipo_id = tipo_id;
         this.prov_id = prov_id;
         this.marca = marca;
         this.modelo = modelo;
-        this.color = color;
         this.year = year;
+        this.color = color;
         this.costo = costo;
         this.placa = placa;
         this.estado = estado;
         this.fecha_ingreso = fecha_ingreso;
     }
+
+    
 
     
 

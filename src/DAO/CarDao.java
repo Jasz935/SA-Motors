@@ -59,10 +59,169 @@ public class CarDao {
         } catch (Exception e){
             System.out.println("No pudo crear la lista");
             e.printStackTrace();
+        }finally {
+
+        try {
+
+            if(ps != null) ps.close();
+            if(con != null) con.close();
+            if(rs != null) rs.close();
+
+        } catch(Exception e){
+            e.printStackTrace();
         }
+    }
         
         return datos;
     }
+    
+    public int agregar(Car carro){
+               int r=0;
+        String sql ="Insert into VEHICULO1(tipo_vehi_id, proveedor_id, marca, modelo, year, color, costo, placa, estado, fecha_ingreso) values (?,?,?,?,?,?,?,?,?,?)";
+        try {
+            
+            con = conectar.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, carro.getTipo_id());
+            ps.setInt(2, carro.getProv_id());
+            ps.setString(3, carro.getMarca());
+            ps.setString(4, carro.getModelo());
+            ps.setInt(5, carro.getYear());
+            ps.setString(6, carro.getColor());
+            ps.setInt(7, carro.getCosto());
+            ps.setString(8, carro.getPlaca());
+            ps.setString(9, carro.getEstado());
+            ps.setString(10, carro.getFecha_ingreso());
+            r = ps.executeUpdate();
+            if(r==1){
+                return 1;
+            } else{
+                return 0;
+            }
+            
+        } catch (Exception e){
+            System.out.println("No se pudo actualizar");
+            e.printStackTrace();
+                   
+        }finally {
+
+        try {
+
+            if(ps != null) ps.close();
+            if(con != null) con.close();
+            if(rs != null) rs.close();
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+        return r;
+    }
+        
+        
+        
+        public int actualizar(Car carro){
+            int r=0;
+            String sql="UPDATE VEHICULO1"
+                    +"SET tipo_vehi_id=?, proveedor_id=?, marca=?, modelo=?, year=?, color=?, costo=?, placa=?, estado=?, fecha_ingreso=?"
+                    +"WHERE vehi_id=?";
+            
+             try {
+            
+            con = conectar.getConnection();
+            ps.setInt(1, carro.getTipo_id());
+            ps.setInt(2, carro.getProv_id());
+            ps.setString(3, carro.getMarca());
+            ps.setString(4, carro.getModelo());
+            ps.setInt(5, carro.getYear());
+            ps.setString(6, carro.getColor());
+            ps.setInt(7, carro.getCosto());
+            ps.setString(8, carro.getPlaca());
+            ps.setString(9, carro.getEstado());
+            ps.setString(10, carro.getFecha_ingreso());
+            r = ps.executeUpdate();
+            if(r==1){
+                return 1;
+            } else{
+                return 0;
+            }
+            
+        } catch (Exception e){
+            System.out.println("No se pudo actualizar");
+            e.printStackTrace();
+                   
+        }finally {
+
+        try {
+
+            if(ps != null) ps.close();
+            if(con != null) con.close();
+            if(rs != null) rs.close();
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+        return r;
+            
+        }
+        
+        
+        
+        
+         public Car buscar(int vehi_id){
+
+    Car carro = new Car();
+
+    String sql = "SELECT * FROM VEHICULO1 WHERE vehi_id=?";
+
+    try {
+
+        con = conectar.getConnection();
+        ps = con.prepareStatement(sql);
+
+        ps.setInt(1, vehi_id);
+
+        rs = ps.executeQuery();
+
+        if(rs.next()){
+
+            carro.setVehi_id(rs.getInt("vehi_id"));
+            carro.setTipo_id(rs.getInt("tipo_vehi_id"));
+            carro.setProv_id(rs.getInt("proveedor_id"));
+            carro.setMarca(rs.getString("marca"));
+            carro.setModelo(rs.getString("modelo"));
+            carro.setYear(rs.getInt("year"));
+            carro.setColor(rs.getString("color"));
+            carro.setCosto(rs.getInt("costo"));
+            carro.setEstado(rs.getString("estado"));
+            carro.setFecha_ingreso(rs.getString("modelo"));
+
+        }
+
+    } catch (Exception e){
+
+        System.out.println("No se pudo buscar");
+        e.printStackTrace();
+
+    }finally {
+
+        try {
+
+            if(rs != null) rs.close();
+            if(ps != null) ps.close();
+            if(con != null) con.close();
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    return carro;
+}
+        
+        
+   }
     
     
 
@@ -71,4 +230,3 @@ public class CarDao {
     
     
     
-}

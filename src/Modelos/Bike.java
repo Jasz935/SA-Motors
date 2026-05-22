@@ -12,11 +12,14 @@ public class Bike extends Vehicle{
 
     public Bike() {
     }   
-    
 
-    public Bike(int vehi_id, int tipo_id, int prov_id, String marca, String modelo, int year, int costo, String placa, String estado, String fecha_ingreso) {
-        super(vehi_id, tipo_id, prov_id, marca, modelo, year, costo, placa, estado, fecha_ingreso);
+    public Bike(int vehi_id, int tipo_id, int prov_id, String marca, String modelo, int year, String color, int costo, String placa, String estado, String fecha_ingreso) {
+        super(vehi_id, tipo_id, prov_id, marca, modelo, year, color, costo, placa, estado, fecha_ingreso);
     }
+
+  
+
+ 
     
     
     
